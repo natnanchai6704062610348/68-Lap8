@@ -1,7 +1,7 @@
 #include <stdio.h>
 int checkscore(char std[]);
-int howmanypeple(char ans[][10],int num);
-
+int howmanypeople(char ans[][10],int num);
+int questionsohard(char ans[][10],int num,int q);
 char keys[10]={'D','B','D','C','C','D','A','E','A','D'};
 
 int main() {
@@ -22,8 +22,11 @@ int main() {
         printf("std %d => %d\n", (i+1), checkscore(ans[i]));
     }printf("\n");
 
-    int resul = howmanypeple(ans,8);
-    printf("Someone answered question 1 correctly = %d peeple.",resul);
+    int resul = howmanypeople(ans,8);
+    printf("Someone answered question 1 correctly = %d people.\n",resul);
+
+    int hard = questionsohard(ans,8,10);
+    printf("questionhard = %d\n",hard);
     
     
     
@@ -40,7 +43,7 @@ int checkscore(char std[]){
     return score;
 }
 
-int howmanypeple(char ans[][10],int num){
+int howmanypeople(char ans[][10],int num){
 
     int i,count=0;
     for(i=0;i<num; i++){
@@ -50,4 +53,28 @@ int howmanypeple(char ans[][10],int num){
     }
 
     return count;
+}
+
+int questionsohard(char ans[][10],int num,int q){
+
+    int i, j;
+    int min = num + 1;
+    int hard = 0;
+
+    for(i=0;i<q;i++){
+        int co = 0;
+        for(j=0;j<num;j++){
+            if(ans[j][i]==keys[i]){
+                co++;
+            }
+        }
+
+        if(co<min){
+            min = co;
+            hard = i+1;
+        }
+    }
+
+    return hard;
+
 }
