@@ -1,5 +1,6 @@
 #include <stdio.h>
 int checkscore(char std[]);
+int howmanypeple(char ans[][10],int num);
 
 char keys[10]={'D','B','D','C','C','D','A','E','A','D'};
 
@@ -19,9 +20,13 @@ int main() {
    
     for(i=0;i<8;i++){
         printf("std %d => %d\n", (i+1), checkscore(ans[i]));
-    }
+    }printf("\n");
+
+    int resul = howmanypeple(ans,8);
+    printf("Someone answered question 1 correctly = %d peeple.",resul);
     
-  
+    
+    
 }
 
 int checkscore(char std[]){
@@ -33,4 +38,16 @@ int checkscore(char std[]){
         }
     }
     return score;
+}
+
+int howmanypeple(char ans[][10],int num){
+
+    int i,count=0;
+    for(i=0;i<num; i++){
+        if(ans[i][0]==keys[0]){
+            count++;
+        }
+    }
+
+    return count;
 }
